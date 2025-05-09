@@ -58,7 +58,7 @@ function MoonIcon() {
 }
 
 export function ThemeSwitcher() {
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme, resolvedTheme } = useTheme();
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
@@ -66,7 +66,7 @@ export function ThemeSwitcher() {
   }, []);
 
   if (!isClient) {
-    return <button className="theme-switcher" />;
+    return <div className="theme-switcher" />;
   }
 
   function handleTheme() {
@@ -79,8 +79,8 @@ export function ThemeSwitcher() {
 
   return (
     <button onClick={handleTheme} className="theme-switcher">
-      {theme === "light" && <MoonIcon />}
-      {theme === "dark" && <SunIcon />}
+      {resolvedTheme === "light" && <MoonIcon />}
+      {resolvedTheme === "dark" && <SunIcon />}
       <span className="sr-only">Toggle theme</span>
     </button>
   );
