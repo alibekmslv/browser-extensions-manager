@@ -1,0 +1,130 @@
+:root {
+  --background: var(--neutral-0);
+  --foreground: black;
+  --background-gradient: var(--light-gradient);
+  --bg-primary: var(--neutral-100);
+  --bg-primary-hover: var(--neutral-300);
+  --text-primary: var(--neutral-900);
+
+  /* Colors */
+
+  /* Neutral */
+  --neutral-900: hsl(227, 75%, 14%);
+  --neutral-800: hsl(226, 25%, 17%);
+  --neutral-700: hsl(225, 23%, 24%);
+  --neutral-600: hsl(226, 11%, 37%);
+  --neutral-300: hsl(0, 0%, 78%);
+  --neutral-200: hsl(217, 61%, 90%);
+  --neutral-100: hsl(0, 0%, 93%);
+  --neutral-0: hsl(200, 60%, 99%);
+
+  /* Red */
+  --red-400: hsl(3, 86%, 64%);
+  --red-500: hsl(3, 71%, 56%);
+  --red-700: hsl(3, 77%, 44%);
+
+  /* Linear Gradients */
+  --light-gradient: linear-gradient(180deg, #ebf2fc 0%, #eef8f9 100%);
+  --dark-gradient: linear-gradient(180deg, #040918 0%, #091540 100%);
+}
+
+[data-theme="dark"] {
+  --background: var(--neutral-800);
+  --foreground: white;
+  --background-gradient: var(--dark-gradient);
+  --bg-primary: var(--neutral-700);
+  --bg-primary-hover: var(--neutral-600);
+  --text-primary: var(--neutral-0);
+}
+
+/* Utility classes */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Main Styles */
+body {
+  background: var(--background-gradient);
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin: 0;
+  padding: 20px 16px 64px;
+}
+
+@media (width >= 768px) {
+  body {
+    padding: 20px 32px 64px;
+  }
+}
+
+@media (width >= 1440px) {
+  body {
+    padding: 40px 0 64px;
+  }
+}
+
+.container {
+  max-width: 1170px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--background);
+  padding: 8px 12px;
+  border-radius: 10px;
+}
+
+@media (width >= 768px) {
+  .header {
+    padding: 12px 16px;
+  }
+}
+
+.theme-switcher {
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: 12px;
+  background-color: var(--bg-primary);
+  cursor: pointer;
+}
+
+.theme-switcher:hover {
+  background-color: var(--bg-primary-hover);
+}
+
+.text-1 {
+  font-size: 34px;
+  line-height: 100%;
+  letter-spacing: -1px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.list-control {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+@media (width >= 768px) {
+  .list-control {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
