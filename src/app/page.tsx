@@ -1,7 +1,12 @@
+import { promises as fs } from "fs";
 import { ThemeSwitcher } from "../components/theme-switcher";
 import { Logo } from "../components/logo";
+import { ExtensionShowcase } from "../components/extension-showcase";
 
-export default function Page() {
+export default async function Page() {
+  const file = await fs.readFile(process.cwd() + "/src/data/data.json", "utf8");
+  const data = JSON.parse(file);
+
   return (
     <>
       <header className="header">
@@ -17,6 +22,7 @@ export default function Page() {
             <button>Inactive</button>
           </div>
         </div>
+        <ExtensionShowcase extensions={data} />
       </main>
     </>
   );

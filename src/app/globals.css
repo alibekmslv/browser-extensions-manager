@@ -1,10 +1,16 @@
 :root {
   --background: var(--neutral-0);
-  --foreground: black;
+  --foreground: var(--neutral-900);
   --background-gradient: var(--light-gradient);
-  --bg-primary: var(--neutral-100);
-  --bg-primary-hover: var(--neutral-300);
-  --text-primary: var(--neutral-900);
+  --switcher: var(--neutral-100);
+  --switcher-hover: var(--neutral-300);
+  --secondary: var(--neutral-600);
+  --card-border: var(--neutral-200);
+  --card-shadow-color: rgba(194, 206, 225, 0.2);
+  --button-outline: var(--neutral-300);
+  --button-hover: var(--red-700);
+  --button-focus-visible: var(--neutral-100);
+  --button-box-shadow: 0px 0px 0px 2px white, 0px 0px 0px 4px var(--red-700);
 
   /* Colors */
 
@@ -30,11 +36,21 @@
 
 [data-theme="dark"] {
   --background: var(--neutral-800);
-  --foreground: white;
+  --foreground: var(--neutral-0);
   --background-gradient: var(--dark-gradient);
-  --bg-primary: var(--neutral-700);
-  --bg-primary-hover: var(--neutral-600);
-  --text-primary: var(--neutral-0);
+  --switcher: var(--neutral-700);
+  --switcher-hover: var(--neutral-600);
+  --secondary: var(--neutral-300);
+  --card-border: var(--neutral-600);
+  --button-outline: var(--neutral-600);
+  --button-hover: var(--red-400);
+  --button-focus-visible: var(--neutral-600);
+  --button-box-shadow: 0px 0px 0px 2px var(--neutral-900),
+    0px 0px 0px 4px var(--red-400);
+}
+
+* {
+  box-sizing: border-box;
 }
 
 /* Utility classes */
@@ -53,7 +69,7 @@
 /* Main Styles */
 body {
   background: var(--background-gradient);
-  color: var(--text-primary);
+  color: var(--foreground);
   display: flex;
   flex-direction: column;
   gap: 40px;
@@ -70,6 +86,18 @@ body {
 @media (width >= 1440px) {
   body {
     padding: 40px 0 64px;
+  }
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+@media (width >= 768px) {
+  main {
+    gap: 32px;
   }
 }
 
@@ -97,14 +125,17 @@ body {
 .theme-switcher {
   width: 50px;
   height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: none;
   border-radius: 12px;
-  background-color: var(--bg-primary);
+  background-color: var(--switcher);
   cursor: pointer;
 }
 
 .theme-switcher:hover {
-  background-color: var(--bg-primary-hover);
+  background-color: var(--switcher-hover);
 }
 
 .text-1 {
@@ -112,6 +143,21 @@ body {
   line-height: 100%;
   letter-spacing: -1px;
   font-weight: bold;
+  margin: 0;
+}
+
+.text-2 {
+  font-size: 20px;
+  line-height: 120%;
+  letter-spacing: -0.2px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.text-5 {
+  font-size: 16px;
+  line-height: 140%;
+  letter-spacing: -0.5px;
   margin: 0;
 }
 
@@ -127,4 +173,95 @@ body {
     flex-direction: row;
     justify-content: space-between;
   }
+}
+
+.extension-showcase {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.extension-card {
+  background-color: var(--background);
+  width: 100%;
+  min-height: 200px;
+  max-width: 343px;
+  padding: 20px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-width: 1px;
+  border-color: var(--card-border);
+  border-style: solid;
+  box-shadow: 0px 2px 2px 0px rgba(194, 206, 225, 0.2),
+    0px 1px 5px 1px rgba(194, 206, 225, 0.22);
+}
+
+[data-theme="dark"] .extension-card {
+  box-shadow: none;
+}
+
+@media (width >= 768px) {
+  .extension-card {
+    max-width: 346px;
+  }
+}
+
+@media (width >= 1440px) {
+  .extension-card {
+    max-width: 382px;
+  }
+}
+
+.extension-card__info {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.extension-card__description {
+  margin-top: 8px;
+  color: var(--secondary);
+}
+
+.extension-card__details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.extension-card__actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.button {
+  background-color: transparent;
+  height: 38px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  outline-color: var(--button-outline);
+  outline-offset: -1px;
+  outline-style: solid;
+  outline-width: 1px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 140%;
+  letter-spacing: -0.5px;
+  font-weight: 500;
+}
+
+.button:focus-visible {
+  background-color: var(--button-focus-visible);
+  box-shadow: var(--button-box-shadow);
+  outline: none;
+}
+
+.button:hover {
+  background-color: var(--button-hover);
+  color: var(--background);
+  outline: none;
 }
