@@ -1,13 +1,13 @@
 import * as React from "react";
-import { Switch } from "@base-ui-components/react/switch";
+import { Switch as SwitchBaseUI } from "@base-ui-components/react/switch";
 import styles from "./index.module.css";
 
-export default function ({
+export default function Switch({
   ...props
-}: React.ComponentProps<typeof Switch.Root>) {
+}: React.ComponentProps<typeof SwitchBaseUI.Root>) {
   return (
-    <Switch.Root {...props} className={styles.Switch}>
-      <Switch.Thumb className={styles.Thumb} />
-    </Switch.Root>
+    <SwitchBaseUI.Root {...props} className={styles.Switch}>
+      <SwitchBaseUI.Thumb className={styles.Thumb} />
+    </SwitchBaseUI.Root>
   );
 }
