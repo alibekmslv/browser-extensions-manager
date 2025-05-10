@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Switch from "./ui/switch";
 
 export interface Extension {
   logo: string;
@@ -25,7 +26,7 @@ export function ExtensionCard({
       </div>
       <div className="extension-card__actions">
         <button className="button">Remove</button>
-        <span>{String(isActive)}</span>
+        <Switch defaultChecked={isActive} />
       </div>
     </div>
   );

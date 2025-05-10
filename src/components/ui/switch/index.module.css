@@ -1,0 +1,101 @@
+.Switch {
+  position: relative;
+  display: flex;
+  appearance: none;
+  border: 0;
+  margin: 0;
+  padding: 2px;
+  width: 2.25rem;
+  height: 1.25rem;
+  border-radius: 1.5rem;
+  outline: 1px solid;
+  outline-offset: -1px;
+  outline-color: transparent;
+  background-color: transparent;
+  background-image: linear-gradient(
+    to right,
+    var(--red-700) 35%,
+    var(--neutral-300) 65%
+  );
+  background-size: 6.5rem 100%;
+  background-position-x: 100%;
+  background-repeat: no-repeat;
+  transition-property: background-position, box-shadow;
+  transition-timing-function: cubic-bezier(0.26, 0.75, 0.38, 0.45);
+  transition-duration: 125ms;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+
+  &:hover {
+    background-image: linear-gradient(
+      to right,
+      var(--red-500) 35%,
+      var(--neutral-300) 65%
+    );
+  }
+
+  &:active {
+    background-image: linear-gradient(
+      to right,
+      var(--red-500) 35%,
+      var(--neutral-300) 65%
+    );
+  }
+
+  &[data-checked] {
+    background-position-x: 0%;
+  }
+
+  &:focus-visible {
+    &::before {
+      content: "";
+      inset: 0;
+      position: absolute;
+      border-radius: inherit;
+      outline-color: var(--red-400);
+      outline-style: solid;
+      outline-width: 2px;
+      outline-offset: 2px;
+    }
+  }
+}
+
+[data-theme="dark"] .Switch {
+  background-image: linear-gradient(
+    to right,
+    var(--red-400) 35%,
+    var(--neutral-600) 65%
+  );
+
+  &:hover {
+    background-image: linear-gradient(
+      to right,
+      var(--red-500) 35%,
+      var(--neutral-600) 65%
+    );
+  }
+}
+
+.Thumb {
+  aspect-ratio: 1 / 1;
+  height: 100%;
+  border-radius: 100%;
+  background-color: var(--neutral-0);
+  transition: translate 150ms ease;
+  box-shadow: 0 1px 3px 0 rgb(10 13 18 / 30%),
+    0 1px 2px -1px rgb(10 13 18 / 30%);
+
+  &[data-checked] {
+    translate: 1rem 0;
+  }
+}
+
+[data-theme="dark"] .Thumb {
+  box-shadow: 0 1px 3px 0 rgb(10 13 18 / 10%), 0 1px 2px -1px rgb(9 21 64 / 60%);
+
+  &[data-checked] {
+    box-shadow: none;
+  }
+}
