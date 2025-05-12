@@ -2,6 +2,8 @@ import { promises as fs } from "fs";
 import { ThemeSwitcher } from "../components/theme-switcher";
 import { Logo } from "../components/logo";
 import { ExtensionShowcase } from "../components/extension-showcase";
+import FilterExtension from "../components/filter-extension";
+import { ExtensionProvider } from "../components/extensions-context";
 
 export default async function Page() {
   const file = await fs.readFile(process.cwd() + "/src/data/data.json", "utf8");
@@ -14,15 +16,13 @@ export default async function Page() {
         <ThemeSwitcher />
       </header>
       <main>
-        <div className="list-control">
-          <h1 className="text-1">Extensions List</h1>
-          <div>
-            <button>All</button>
-            <button>Active</button>
-            <button>Inactive</button>
+        <ExtensionProvider extensions={data}>
+          <div className="list-control">
+            <h1 className="text-1">Extensions List</h1>
+            <FilterExtension />
           </div>
-        </div>
-        <ExtensionShowcase extensions={data} />
+          <ExtensionShowcase />
+        </ExtensionProvider>
       </main>
     </>
   );

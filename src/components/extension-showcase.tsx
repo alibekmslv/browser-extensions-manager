@@ -1,16 +1,48 @@
-import type { Extension } from "./extension-card";
+"use client";
+
+import { useExtensions } from "../hooks/hooks";
 import { ExtensionCard } from "./extension-card";
 
-interface ExtensionShowcaseProps {
-  extensions: Extension[];
-}
+export function ExtensionShowcase() {
+  const { state, extensions } = useExtensions();
 
-export function ExtensionShowcase({ extensions }: ExtensionShowcaseProps) {
+  function AllExtensions() {
+    return (
+      <>
+        {extensions.map((item) => {
+          return <ExtensionCard key={item.name} extension={item} />;
+        })}
+      </>
+    );
+  }
+
+  function ActiveExtensions() {
+    return (
+      <>
+        {extensions.map((item) => {
+          if (item.isActive)
+            return <ExtensionCard key={item.name} extension={item} />;
+        })}
+      </>
+    );
+  }
+
+  function InactiveExtensions() {
+    return (
+      <>
+        {extensions.map((item) => {
+          if (!item.isActive)
+            return <ExtensionCard key={item.name} extension={item} />;
+        })}
+      </>
+    );
+  }
+
   return (
     <div className="extension-showcase">
-      {extensions.map((item) => (
-        <ExtensionCard key={item.name} extension={item} />
-      ))}
+      {state.filter === "all" && <AllExtensions />}
+      {state.filter === "active" && <ActiveExtensions />}
+      {state.filter === "inactive" && <InactiveExtensions />}
     </div>
   );
 }

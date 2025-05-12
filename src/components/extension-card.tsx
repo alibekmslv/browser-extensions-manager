@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Switch from "./ui/switch";
+import { useExtensions } from "../hooks/hooks";
 
 export interface Extension {
   logo: string;
@@ -15,6 +16,8 @@ type ExtensionCardProps = {
 export function ExtensionCard({
   extension: { description, isActive, logo, name },
 }: ExtensionCardProps) {
+  const { dispatch } = useExtensions();
+
   return (
     <div className="extension-card">
       <div className="extension-card__info">
@@ -25,8 +28,16 @@ export function ExtensionCard({
         </div>
       </div>
       <div className="extension-card__actions">
-        <button className="button">Remove</button>
-        <Switch defaultChecked={isActive} />
+        <button
+          className="button"
+          onClick={() => dispatch({ type: "remove", name: name })}
+        >
+          Remove
+        </button>
+        <Switch
+          defaultChecked={isActive}
+          onCheckedChange={() => dispatch({ type: "switch", name: name })}
+        />
       </div>
     </div>
   );
