@@ -9,11 +9,9 @@ import {
 export function useExtensions() {
   const state = useContext(ExtensionsContext);
   const dispatch = useContext(ExtensionsDispatchContext);
-  const extensions = state.extensions;
 
   return {
-    state,
+    ...state,
     dispatch,
-    extensions,
   };
 }

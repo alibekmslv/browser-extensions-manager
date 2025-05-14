@@ -1,3 +1,4 @@
+import React from "react";
 import Image from "next/image";
 import Switch from "./ui/switch";
 import { useExtensions } from "../hooks/hooks";
@@ -35,7 +36,7 @@ export function ExtensionCard({
           Remove
         </button>
         <Switch
-          defaultChecked={isActive}
+          checked={isActive}
           onCheckedChange={() => dispatch({ type: "switch", name: name })}
         />
       </div>
