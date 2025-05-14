@@ -154,6 +154,13 @@ main {
   margin: 0;
 }
 
+.text-3 {
+  font-size: 20px;
+  line-height: 140%;
+  letter-spacing: -0.3;
+  margin: 0;
+}
+
 .text-5 {
   font-size: 16px;
   line-height: 140%;
@@ -268,4 +275,80 @@ main {
   background-color: var(--button-hover);
   color: var(--background);
   outline: none;
+}
+
+.filter {
+  display: flex;
+  gap: 12px;
+}
+
+.filter-tab {
+  height: 46px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 999px;
+  border: none;
+  background-color: var(--neutral-0);
+  color: var(--neutral-900);
+  font-size: 20px;
+  line-height: 140%;
+  letter-spacing: -0.3;
+  outline-width: 1px;
+  outline-color: var(--neutral-200);
+  outline-style: solid;
+  outline-offset: -1px;
+  cursor: pointer;
+  box-shadow: 0 1px 2px 0 rgb(184 196 215 / 40%);
+}
+
+.filter-tab:hover {
+  opacity: 70%;
+  box-shadow: none;
+}
+
+.filter-tab:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--neutral-200), 0 0 0 4px var(--red-400);
+}
+
+.filter-tab--active {
+  background-color: var(--red-700);
+  color: var(--neutral-0);
+  outline-color: transparent;
+}
+
+.filter-tab--active:hover {
+  opacity: 100%;
+  background-color: var(--red-500);
+}
+
+.filter-tab--active:focus-visible {
+  box-shadow: 0 0 0 2px var(--neutral-0), 0 0 0 4px var(--red-400);
+}
+
+[data-theme="dark"] .filter-tab {
+  background-color: var(--neutral-700);
+  color: var(--neutral-0);
+  outline-color: var(--neutral-600);
+  box-shadow: none;
+}
+
+[data-theme="dark"] .filter-tab:hover {
+  opacity: 1;
+  background-color: var(--neutral-600);
+}
+
+[data-theme="dark"] .filter-tab:focus-visible {
+  box-shadow: 0 0 0 2px var(--neutral-900), 0 0 0 4px var(--red-400);
+}
+
+[data-theme="dark"] .filter-tab--active {
+  background-color: var(--red-400);
+  color: var(--neutral-900);
+  outline-color: var(--red-400);
+}
+
+[data-theme="dark"] .filter-tab--active:hover {
+  background-color: var(--red-500);
+  outline: transparent;
 }

@@ -1,33 +1,34 @@
 "use client";
 
 import { useExtensions } from "../hooks/hooks";
-import { Tabs, TabsList, TabsTrigger } from "./ui/tabs";
 
-export default function FilterExtension() {
-  const { dispatch } = useExtensions();
+export function FilterExtension() {
+  const { filter, dispatch } = useExtensions();
 
   return (
-    <Tabs defaultValue="all">
-      <TabsList>
-        <TabsTrigger
-          value="all"
-          onClick={() => dispatch({ type: "filterAll" })}
-        >
-          All
-        </TabsTrigger>
-        <TabsTrigger
-          value="active"
-          onClick={() => dispatch({ type: "filterActive" })}
-        >
-          Active
-        </TabsTrigger>
-        <TabsTrigger
-          value="inactive"
-          onClick={() => dispatch({ type: "filterInactive" })}
-        >
-          Inactive
-        </TabsTrigger>
-      </TabsList>
-    </Tabs>
+    <div className="filter">
+      <button
+        className={`filter-tab${filter === "all" ? " filter-tab--active" : ""}`}
+        onClick={() => dispatch({ type: "filterAll" })}
+      >
+        All
+      </button>
+      <button
+        className={`filter-tab${
+          filter === "active" ? " filter-tab--active" : ""
+        }`}
+        onClick={() => dispatch({ type: "filterActive" })}
+      >
+        Active
+      </button>
+      <button
+        className={`filter-tab${
+          filter === "inactive" ? " filter-tab--active" : ""
+        }`}
+        onClick={() => dispatch({ type: "filterInactive" })}
+      >
+        Inactive
+      </button>
+    </div>
   );
 }

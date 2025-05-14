@@ -2,7 +2,7 @@ import { promises as fs } from "fs";
 import { ThemeSwitcher } from "../components/theme-switcher";
 import { Logo } from "../components/logo";
 import { ExtensionShowcase } from "../components/extension-showcase";
-import FilterExtension from "../components/filter-extension";
+import { FilterExtension } from "../components/filter-extension";
 import { ExtensionProvider } from "../components/extensions-provider";
 
 export default async function Page() {
