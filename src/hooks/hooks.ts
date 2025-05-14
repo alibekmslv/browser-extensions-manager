@@ -4,7 +4,7 @@ import { useContext } from "react";
 import {
   ExtensionsContext,
   ExtensionsDispatchContext,
-} from "../components/extensions-context";
+} from "../components/extensions-provider";
 
 export function useExtensions() {
   const state = useContext(ExtensionsContext);
