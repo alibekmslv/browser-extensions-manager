@@ -49,6 +49,13 @@
     0px 0px 0px 4px var(--red-400);
 }
 
+/* Reset button */
+button {
+  color: inherit;
+  -webkit-appearance: none; /* Turn off default Safari appearance */
+  -webkit-tap-highlight-color: transparent; /* Remove the blue background on tap */
+}
+
 * {
   box-sizing: border-box;
 }
