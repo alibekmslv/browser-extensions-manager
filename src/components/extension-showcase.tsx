@@ -1,38 +1,62 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { useExtensions } from "../hooks/hooks";
 import { ExtensionCard } from "./extension-card";
 
 export function ExtensionShowcase() {
   const { extensions, filter } = useExtensions();
 
+  const [cachedActiveExtensions, setCachedActiveExtensions] = useState(() =>
+    extensions.filter((item) => item.isActive)
+  );
+
+  const [cachedInactiveExtensions, setCachedInactiveExtensions] = useState(() =>
+    extensions.filter((item) => !item.isActive)
+  );
+
+  useEffect(() => {
+    // We add timeout to prevent UI flicker on isActive change
+    const timeout = setTimeout(() => {
+      if (filter === "active") {
+        setCachedActiveExtensions(extensions.filter((item) => item.isActive));
+      }
+
+      if (filter === "inactive") {
+        setCachedInactiveExtensions(
+          extensions.filter((item) => !item.isActive)
+        );
+      }
+    }, 300);
+
+    return () => clearTimeout(timeout);
+  }, [filter, extensions]);
+
   function renderContent() {
     switch (filter) {
       case "active":
         return (
           <>
-            {extensions.map((item) => {
-              if (item.isActive)
-                return <ExtensionCard key={item.name} extension={item} />;
-            })}
+            {cachedActiveExtensions.map((item) => (
+              <ExtensionCard key={item.name} extension={item} />
+            ))}
           </>
         );
       case "inactive":
         return (
           <>
-            {extensions.map((item) => {
-              if (!item.isActive)
-                return <ExtensionCard key={item.name} extension={item} />;
-            })}
+            {cachedInactiveExtensions.map((item) => (
+              <ExtensionCard key={item.name} extension={item} />
+            ))}
           </>
         );
 
       default:
         return (
           <>
-            {extensions.map((item) => {
-              return <ExtensionCard key={item.name} extension={item} />;
-            })}
+            {extensions.map((item) => (
+              <ExtensionCard key={item.name} extension={item} />
+            ))}
           </>
         );
     }
