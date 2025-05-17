@@ -2,15 +2,6 @@
   --background: var(--neutral-0);
   --foreground: var(--neutral-900);
   --background-gradient: var(--light-gradient);
-  --switcher: var(--neutral-100);
-  --switcher-hover: var(--neutral-300);
-  --secondary: var(--neutral-600);
-  --card-border: var(--neutral-200);
-  --card-shadow-color: rgba(194, 206, 225, 0.2);
-  --button-outline: var(--neutral-300);
-  --button-hover: var(--red-700);
-  --button-focus-visible: var(--neutral-100);
-  --button-box-shadow: 0px 0px 0px 2px white, 0px 0px 0px 4px var(--red-700);
 
   /* Colors */
 
@@ -37,16 +28,6 @@
 [data-theme="dark"] {
   --background: var(--neutral-800);
   --foreground: var(--neutral-0);
-  --background-gradient: var(--dark-gradient);
-  --switcher: var(--neutral-700);
-  --switcher-hover: var(--neutral-600);
-  --secondary: var(--neutral-300);
-  --card-border: var(--neutral-600);
-  --button-outline: var(--neutral-600);
-  --button-hover: var(--red-400);
-  --button-focus-visible: var(--neutral-600);
-  --button-box-shadow: 0px 0px 0px 2px var(--neutral-900),
-    0px 0px 0px 4px var(--red-400);
 }
 
 /* Reset button */
@@ -75,7 +56,7 @@ button {
 
 /* Main Styles */
 body {
-  background: var(--background-gradient);
+  background: var(--light-gradient);
   color: var(--foreground);
   display: flex;
   flex-direction: column;
@@ -83,6 +64,10 @@ body {
   margin: 0;
   padding: 20px 16px 64px;
   min-height: 100vh;
+}
+
+[data-theme="dark"] body {
+  background: var(--dark-gradient);
 }
 
 @media (width >= 768px) {
@@ -138,12 +123,20 @@ main {
   justify-content: center;
   border: none;
   border-radius: 12px;
-  background-color: var(--switcher);
+  background-color: var(--neutral-100);
   cursor: pointer;
 }
 
 .theme-switcher:hover {
-  background-color: var(--switcher-hover);
+  background-color: var(--neutral-300);
+}
+
+[data-theme="dark"] .theme-switcher {
+  background-color: var(--neutral-700);
+}
+
+[data-theme="dark"] .theme-switcher:hover {
+  background-color: var(--neutral-600);
 }
 
 .text-1 {
@@ -220,13 +213,14 @@ main {
   flex-direction: column;
   justify-content: space-between;
   border-width: 1px;
-  border-color: var(--card-border);
+  border-color: var(--neutral-200);
   border-style: solid;
   box-shadow: 0px 2px 2px 0px rgba(194, 206, 225, 0.2),
     0px 1px 5px 1px rgba(194, 206, 225, 0.22);
 }
 
 [data-theme="dark"] .extension-card {
+  border-color: var(--neutral-600);
   box-shadow: none;
 }
 
@@ -243,7 +237,11 @@ main {
 
 .extension-card__description {
   margin-top: 8px;
-  color: var(--secondary);
+  color: var(--neutral-600);
+}
+
+[data-theme="dark"] .extension-card__description {
+  color: var(--neutral-300);
 }
 
 .extension-card__details {
@@ -263,7 +261,7 @@ main {
   height: 38px;
   padding: 8px 16px;
   border-radius: 999px;
-  outline-color: var(--button-outline);
+  outline-color: var(--neutral-300);
   outline-offset: -1px;
   outline-style: solid;
   outline-width: 1px;
@@ -279,15 +277,28 @@ main {
 }
 
 .button:focus-visible {
-  background-color: var(--button-focus-visible);
-  box-shadow: var(--button-box-shadow);
+  background-color: var(--neutral-100);
+  box-shadow: 0px 0px 0px 2px white, 0px 0px 0px 4px var(--red-700);
   outline: none;
 }
 
 .button:hover {
-  background-color: var(--button-hover);
+  background-color: var(--red-700);
   color: var(--background);
   outline: none;
+}
+
+[data-theme="dark"] .button {
+  outline-color: var(--neutral-600);
+}
+
+[data-theme="dark"] .button:hover {
+  background-color: var(--red-400);
+}
+
+[data-theme="dark"] .button:focus-visible {
+  background-color: var(--neutral-600);
+  box-shadow: 0px 0px 0px 2px var(--neutral-900), 0px 0px 0px 4px var(--red-400);
 }
 
 .filter {
