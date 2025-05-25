@@ -1,7 +1,5 @@
-import React, { useState } from "react";
 import Image from "next/image";
 import Switch from "./ui/switch";
-import { useExtensions } from "../hooks/hooks";
 
 export interface Extension {
   logo: string;
@@ -12,14 +10,15 @@ export interface Extension {
 
 type ExtensionCardProps = {
   extension: Extension;
+  onRemove: () => void;
+  onSwitch: () => void;
 };
 
 export function ExtensionCard({
   extension: { description, isActive, logo, name },
+  onRemove,
+  onSwitch,
 }: ExtensionCardProps) {
-  const { dispatch } = useExtensions();
-  // Intentionally mirror state for UX implementation
-  const [localIsActive, setLocalIsActive] = useState(isActive);
 
   return (
     <div className="extension-card">
@@ -34,20 +33,15 @@ export function ExtensionCard({
         <button
           className="button"
           onClick={() => {
-            dispatch({ type: "remove", name: name });
+            onRemove();
           }}
         >
           Remove
         </button>
         <Switch
-          checked={localIsActive}
+          checked={isActive}
           onCheckedChange={() => {
-            // Manually sync with outer state
-            setLocalIsActive(!localIsActive);
-            dispatch({
-              type: "switch",
-              name: name,
-            });
+            onSwitch();
           }}
         />
       </div>
