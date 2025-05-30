@@ -43,37 +43,48 @@ Users should be able to:
 
 - Semantic HTML5 markup
 - CSS custom properties
-- Flexbox
-- CSS Grid
 - Mobile-first workflow
 - [Next.js](https://nextjs.org/) - React framework
+- [Base UI](https://base-ui.com) – Unstyled UI components
 
 ### What I learned
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
+One of the most interesting parts of this project was implementing the visibleExtensions state to manage which extensions should be displayed depending on the active tab (All, Active, or Inactive). Instead of immediately filtering the list when an extension’s status was toggled, I introduced a Set<string> to keep track of the visible extension names. This allowed me to improve the UX by ensuring that toggling the switch (e.g., deactivating an extension) wouldn’t cause the card to instantly disappear from view. The state is updated only when the tab is changed, which makes the interface feel more stable and less abrupt.
 
-To see how you can add code snippets, see below:
+```tsx
+const [visibleExtensions, setVisibleExtensions] = useState<Set<string>>(new Set())
 
-```css
-.proud-of-this-css {
-  color: papayawhip;
-}
-```
+useEffect(() => {
+  if (activeTab !== previousTabRef.current) {
+    const newVisibleExtensions = new Set<string>()
 
-```js
-const proudOfThisFunc = () => {
-  console.log("🎉");
-};
+    extensions.forEach((extension) => {
+      if (activeTab === "all") {
+        newVisibleExtensions.add(extension.name)
+      } else if (activeTab === "active" && extension.isActive) {
+        newVisibleExtensions.add(extension.name)
+      } else if (activeTab === "inactive" && !extension.isActive) {
+        newVisibleExtensions.add(extension.name)
+      }
+    })
+
+    setVisibleExtensions(newVisibleExtensions)
+    previousTabRef.current = activeTab
+  }
+}, [activeTab, extensions])
 ```
 
 ### Continued development
 
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
+In future projects, I’d like to deepen my understanding of React patterns and architecture. While working on this project, I realized how important it is to structure state management and component responsibilities clearly. I plan to explore patterns such as compound components, render props, and state colocation to improve maintainability and scalability in more complex applications.
 
 ### Useful resources
 
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
+- [Base UI](https://base-ui.com) - I integrated the Switch component from Base UI and customized its appearance to match the design mockups.
+- [next-themes](https://github.com/pacocoursey/next-themes) –  This library was used to add support for light and dark themes in a simple and efficient way.
+
+All other components and styles were written entirely from scratch.
+
 
 ## Author
 
