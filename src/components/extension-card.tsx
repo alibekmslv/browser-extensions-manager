@@ -35,6 +35,7 @@ export function ExtensionCard({
           onClick={() => {
             onRemove();
           }}
+          type="button"
         >
           Remove
         </button>

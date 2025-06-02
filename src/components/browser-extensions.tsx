@@ -74,6 +74,7 @@ export function BrowserExtensions({ data }: Props) {
           <button
             className={`filter-tab${activeTab === "all" ? " filter-tab--active" : ""}`}
             onClick={() => setActiveTab("all")}
+            type="button"
           >
             All
           </button>
@@ -81,6 +82,7 @@ export function BrowserExtensions({ data }: Props) {
             className={`filter-tab${activeTab === "active" ? " filter-tab--active" : ""
               }`}
             onClick={() => setActiveTab("active")}
+            type="button"
           >
             Active
           </button>
@@ -88,6 +90,7 @@ export function BrowserExtensions({ data }: Props) {
             className={`filter-tab${activeTab === "inactive" ? " filter-tab--active" : ""
               }`}
             onClick={() => setActiveTab("inactive")}
+            type="button"
           >
             Inactive
           </button>

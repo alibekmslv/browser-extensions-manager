@@ -78,7 +78,12 @@ export function ThemeSwitcher() {
   }
 
   return (
-    <button onClick={handleTheme} className="theme-switcher">
+    <button
+      onClick={handleTheme}
+      className="theme-switcher"
+      type="button"
+      aria-label="Switch theme"
+    >
       {resolvedTheme === "light" && <MoonIcon />}
       {resolvedTheme === "dark" && <SunIcon />}
       <span className="sr-only">Toggle theme</span>
