@@ -19,7 +19,6 @@ export function ExtensionCard({
   onRemove,
   onSwitch,
 }: ExtensionCardProps) {
-
   return (
     <div className="extension-card">
       <div className="extension-card__info">

@@ -52,26 +52,28 @@ Users should be able to:
 One of the most interesting parts of this project was implementing the visibleExtensions state to manage which extensions should be displayed depending on the active tab (All, Active, or Inactive). Instead of immediately filtering the list when an extension’s status was toggled, I introduced a Set<string> to keep track of the visible extension names. This allowed me to improve the UX by ensuring that toggling the switch (e.g., deactivating an extension) wouldn’t cause the card to instantly disappear from view. The state is updated only when the tab is changed, which makes the interface feel more stable and less abrupt.
 
 ```tsx
-const [visibleExtensions, setVisibleExtensions] = useState<Set<string>>(new Set())
+const [visibleExtensions, setVisibleExtensions] = useState<Set<string>>(
+  new Set(),
+);
 
 useEffect(() => {
   if (activeTab !== previousTabRef.current) {
-    const newVisibleExtensions = new Set<string>()
+    const newVisibleExtensions = new Set<string>();
 
     extensions.forEach((extension) => {
       if (activeTab === "all") {
-        newVisibleExtensions.add(extension.name)
+        newVisibleExtensions.add(extension.name);
       } else if (activeTab === "active" && extension.isActive) {
-        newVisibleExtensions.add(extension.name)
+        newVisibleExtensions.add(extension.name);
       } else if (activeTab === "inactive" && !extension.isActive) {
-        newVisibleExtensions.add(extension.name)
+        newVisibleExtensions.add(extension.name);
       }
-    })
+    });
 
-    setVisibleExtensions(newVisibleExtensions)
-    previousTabRef.current = activeTab
+    setVisibleExtensions(newVisibleExtensions);
+    previousTabRef.current = activeTab;
   }
-}, [activeTab, extensions])
+}, [activeTab, extensions]);
 ```
 
 ### Continued development
@@ -81,10 +83,9 @@ In future projects, I’d like to deepen my understanding of React patterns and 
 ### Useful resources
 
 - [Base UI](https://base-ui.com) - I integrated the Switch component from Base UI and customized its appearance to match the design mockups.
-- [next-themes](https://github.com/pacocoursey/next-themes) –  This library was used to add support for light and dark themes in a simple and efficient way.
+- [next-themes](https://github.com/pacocoursey/next-themes) – This library was used to add support for light and dark themes in a simple and efficient way.
 
 All other components and styles were written entirely from scratch.
-
 
 ## Author
 

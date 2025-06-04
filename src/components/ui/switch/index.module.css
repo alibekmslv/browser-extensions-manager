@@ -84,7 +84,8 @@
   border-radius: 100%;
   background-color: var(--neutral-0);
   transition: translate 150ms ease;
-  box-shadow: 0 1px 3px 0 rgb(10 13 18 / 30%),
+  box-shadow:
+    0 1px 3px 0 rgb(10 13 18 / 30%),
     0 1px 2px -1px rgb(10 13 18 / 30%);
 
   &[data-checked] {
@@ -93,7 +94,9 @@
 }
 
 [data-theme="dark"] .Thumb {
-  box-shadow: 0 1px 3px 0 rgb(10 13 18 / 10%), 0 1px 2px -1px rgb(9 21 64 / 60%);
+  box-shadow:
+    0 1px 3px 0 rgb(10 13 18 / 10%),
+    0 1px 2px -1px rgb(9 21 64 / 60%);
 
   &[data-checked] {
     box-shadow: none;
