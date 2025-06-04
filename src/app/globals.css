@@ -142,7 +142,6 @@ main {
   cursor: pointer;
 }
 
-
 .theme-switcher:hover {
   background-color: var(--neutral-300);
 }
@@ -340,7 +339,7 @@ main {
   color: var(--neutral-900);
   font-size: 20px;
   line-height: 140%;
-  letter-spacing: -0.3;
+  letter-spacing: -0.3px;
   outline-width: 1px;
   outline-color: var(--neutral-200);
   outline-style: solid;
